@@ -21,13 +21,16 @@ class UserAction extends Action {
     	print_r($user);
     	echo '</pre>';
     	if($user->add()){
-    		echo $user->getlastSQL();
-    		//$this->success('添加成功',U('index'));
+    		//echo $user->getLastSql();
+    		$this->success('添加成功',U('index'));
     	}
     }
 
     public function edit(){
-
+    	$user=M('user');
+    	$row=$user->find($_GET['id']);
+    	print_r($row);
+    	$this->display();
     }
 
     public function delete(){
