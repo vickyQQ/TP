@@ -3,9 +3,31 @@
 class UserAction extends Action {
     public function index(){
 		$user=M('user');
-		$rs=$user->select();
+		$rs=$user->order('id desc')->field('id,uname,upwd')->where('1=1')->limit('0,100')->select();
+		//$rs=$user->order('id desc')->getField('id,uname,upwd');
+		//$rs=$user->find();
 		$this->assign('row',$rs);
 		$this->display();
+    }
+
+    public function add(){
+    	$this->display();
+    }
+
+    public function insert(){
+    	$user=M('user');
+    	$user->create();
+    	echo '<pre>';
+    	print_r($user);
+    	echo '</pre>';
+    	if($user->add()){
+    		echo $user->getlastSQL();
+    		//$this->success('添加成功',U('index'));
+    	}
+    }
+
+    public function edit(){
+
     }
 
     public function delete(){
