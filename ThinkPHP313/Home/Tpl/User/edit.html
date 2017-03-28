@@ -9,14 +9,15 @@
 <body>
 <div class="container">
 	<h1 class="page-header">修改用户</h1>
-	<form action="__URL__/edit" method="post">
+	<form action="__URL__/update" method="post">
 		<div class="form-group">
 			<label>用户名：</label>
 			<input type="text" name="uname" class="form-control" value="{$row['uname']}">
+			<input type="hidden" name="id" class="form-control" value="{$row['id']}">
 		</div>
 		<div class="form-group">
 			<label>密码：</label>
-			<input type="password" name="upwd" class="form-control">
+			<input type="password" name="upwd" class="form-control" value="{$row['upwd']}">
 		</div>
 		<div class="form-group">
 		</div>
