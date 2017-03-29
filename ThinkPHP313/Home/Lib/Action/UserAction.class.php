@@ -14,19 +14,25 @@ class UserAction extends Action {
     }
 
     public function add(){
+    	//print_r($_SESSION); TP里面的方法已经默认开启了session
     	$this->display();
     }
 
     public function insert(){
-    	$user=M('user');
-    	$user->create();
-    	/*echo '<pre>';
-    	print_r($user);
-    	echo '</pre>';*/
-    	if($user->add()){
+
+    	$user=D('User'); //用D方法表名首字母需要大写
+    	//var_dump($user->create());exit;
+    	if($user->create()){
+    		$user->add();
+    		echo "添加成功";
+    	}else{
+    		print_r($user->getError());
+    	}
+
+    	/*if($user->add()){
     		//echo $user->getLastSql();
     		$this->success('添加成功',U('index'));
-    	}
+    	}*/
     }
 
     public function edit(){
@@ -50,13 +56,22 @@ class UserAction extends Action {
     public function delete(){
     	$id=$_GET['id'];
     	$user=M('user');
-    	$num=$user->delete($id);
+    	//$num=$user->delete($id);
+    	//事务机制
+    	$user->startTrans();
+    	$num=$user->delete(17);
+    	$num=$user->delete(aa);
     	if($num){
-    		$this->success('删除成功',U('index'));
+    		$user->commit();
+    		echo '删除成功';
+    		//$this->success('删除成功',U('index'));
     		//重定向 直接跳转
     		//$this->redirct('index');
     	}else{
-    		$this->error('删除失败',U('index'));
+    		$user->rollback();
+    		echo '删除失败';
+    		//$this->error('删除失败',U('index'));
+    		
     	}
     }
     //用于jquery数据返回
@@ -66,5 +81,10 @@ class UserAction extends Action {
     	if($user->delete($id)){
     		echo 1;
     	}
+    }
+
+    public function vcode(){
+    	import('ORG.Util.Image');
+    	Image::buildImageVerify();
     }
 }

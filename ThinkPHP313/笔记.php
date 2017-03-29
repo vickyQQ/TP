@@ -27,3 +27,5 @@ U('[分组/模块/操作]?参数' [,'参数','伪静态后缀','是否跳转','�
 {:U('Store/Ump/lists','type=1&id=1')}
 {:U('Article/index','category='.$vo['name'])}
 {:U('User/delete',array('id'=>$vo['id']))}
+
+事务机制
