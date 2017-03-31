@@ -20,12 +20,12 @@
 		</tr>
 		<volist name='row' id='vo'>
 		<tr>
-			<td>{$vo.id}</td>
-			<td>{$vo.uname}</td>
-			<td>{$vo.upwd}</td>
-			<td><a id='{$vo['id']}' href="__URL__/edit/id/{$vo.id}" class="btn btn-primary">修改</a></td>
+			<td><{$vo.id}></td>
+			<td><{$vo.uname}></td>
+			<td><{$vo.upwd}></td>
+			<td><a id='<{$vo['id']}>' href="__URL__/edit/id/<{$vo.id}>" class="btn btn-primary">修改</a></td>
 			<!-- <td><a id='del' href="{:U('User/delete',array('id'=>$vo['id']))}">删除</a></td> -->
-			<td><a id='{$vo['id']}' href="javascript:;" class="btn btn-danger del">删除</a></td>
+			<td><a id='<{$vo['id']}>' href="javascript:;" class="btn btn-danger del">删除</a></td>
 		</tr>
 		</volist>
 	</table>
@@ -38,7 +38,7 @@
 		obj=$(this);
 		$.get('__URL__/drop',{'id':id},function(data){
 			if(data==1){
-				obj.parent().parent().hide(500);
+				obj.parent().parent().hide(200);
 			}
 		})
 	})

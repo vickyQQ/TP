@@ -141,5 +141,7 @@ return  array(
 
     'OUTPUT_ENCODE'         =>  false, // 页面压缩输出
     'HTTP_CACHE_CONTROL'    =>  'private', // 网页缓存控制
-
+    //修改定界符
+    /*'TMPL_L_DELIM'=>'<{',
+    'TMPL_R_DELIM'=>'}>',*/
 );
