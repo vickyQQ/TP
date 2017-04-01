@@ -38,11 +38,19 @@ if($num){
 }
 
 四、模板
-包含文件
-<include file='Public:header' />//包含Public文件夹下的header文件。特别注意1、这里的冒号只是目录的意思，不是使用函数
-模板中使用函数前面要加冒号；2、TP模板采用XML语法标签，因此单标签要求要闭合，即在标签后面加斜线 '/>'。
+(一)、包含文件
+1、文件包含<include file='Public:header' />//包含Public文件夹下的header文件。特别注意a、这里的冒号只是目录的意思，不是使用函数
+模板中使用函数前面要加冒号；b、TP模板采用XML语法标签，因此单标签要求要闭合，即在标签后面加斜线 '/>'。
+2、js包含 
+例<script src="../public/js/index.js"></script>
+在index.js文件里面有模板变量，但是在tp模板里无法做解析，因此最好不要在外部js文件中写模板变量。
+如果一定要写，有个解决办法
+<script>color='<{$color}>';</script>
+然后再在下面加载外部js文件。
+(二)、冒号
+使用函数的时候前面才加:
 <{:U('Home/Index/index')}>
-模板默认值输出
+(三)、模板默认值输出
 {$user.nickname|default="这家伙很懒，什么也没留下"}
-三元运算
+(四)、三元运算
 {$user.nickname?$user.nickname:"这家伙很懒，什么也没留下"}
