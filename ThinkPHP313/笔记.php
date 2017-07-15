@@ -54,3 +54,9 @@ if($num){
 {$user.nickname|default="这家伙很懒，什么也没留下"}
 (四)、三元运算
 {$user.nickname?$user.nickname:"这家伙很懒，什么也没留下"}
+
+五、空模块处理
+防止输入不存在的控制器名称暴露出程序错误提示，可以根据TP的核心文件已有对empty的处理，新建控制器来调用
+empty控制器和方法都会被自动调用
+1、新建一个EmptyController.class.php
+2、建立function _empty(){} 方法即可
